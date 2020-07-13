@@ -15,8 +15,7 @@ Here this concept is so simple.
 2. Generator:the name itself says that it generates images.We never show the real faces to the generator, instead we add noise to the real images and give input to the Generator.
 3. The job of discriminator is to detect the real faces. Here the discriminator has two inputs (a)fake images from generator (b)real images from user.
 4. Then the discriminator detects which are real images and which are fake. Then we get the discriminator loss and Generator loss.
-
-5.So, D(G(z)) is the probability (scalar) that the output of the generator G is a real image. As described in Goodfellow’s paper, D and G play a minimax game in which D tries to     maximize the probability it correctly classifies reals and fakes (logD(x)), and G tries to minimize the probability that D will predict its outputs are fake (log(1−D(G(x)))).     From the paper, the GAN loss function is
+5. So, D(G(z)) is the probability (scalar) that the output of the generator G is a real image. As described in Goodfellow’s paper, D and G play a minimax game in which D tries to     maximize the probability it correctly classifies reals and fakes (logD(x)), and G tries to minimize the probability that D will predict its outputs are fake (log(1−D(G(x)))).     From the paper, the GAN loss function is
 
    ![](https://i.stack.imgur.com/hsGm2.gif)
 
