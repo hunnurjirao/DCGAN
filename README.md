@@ -6,9 +6,6 @@ Generative Adversarial Networks (GANs) are one of the most interesting ideas in 
 
 ![](https://miro.medium.com/max/2850/1*Mw2c3eY5khtXafe5W-Ms_w.jpeg)
 
-
-![](https://gluon.mxnet.io/_images/dcgan.png)
-
 ## Generator
 
 1. First we have to provide a random noise to the generator as a input.
@@ -25,6 +22,8 @@ Generative Adversarial Networks (GANs) are one of the most interesting ideas in 
 4. The network looks quite opposite to the discriminator.
 5. As mentioned, the discriminator is a binary classification network that takes an image as input and outputs a scalar probability that the input image is real (as opposed to  	fake).
 6. Here, Discriminator takes a 3x64x64 input image, processes it through a series of Conv2d, BatchNorm2d, and LeakyReLU layers, and outputs the final probability through a          Sigmoid activation function. 
+
+![](https://gluon.mxnet.io/_images/dcgan.png)
 
 ## Loss Function
 
@@ -45,7 +44,7 @@ Now let us consider 2nd term,
 
    To make 2nd term zero we want to make  D(G(z(i))) = 1. This means that when we pass the fake images generated from the Generator as input to the Discriminator, then Discriminator has to detect that fake images as real images. But how is it possible??
 
-Before knowing the answer, we want to conclude that our loss value is the sum of loss values of two terms i.e., ''how bad the discriminator classifies the real images as real(1st term) and how bad the discriminator classifiers the fake images as real(2nd term).
+Before knowing the answer, we want to conclude that our loss value is the sum of loss values of two terms i.e., ''how bad the discriminator classifies the real images as real(1st term) and how bad the discriminator classifiers the fake images as real(2nd term).''
 
 Ok, now let's come back to our question, How is it possible to make our 2nd term zero? Here comes the optimizers into the picture. Here we use Adam optimizer to reduce the loss function through back propagation.  Finally, we set up two separate optimizers, one for Generator and one for Discriminator. As specified in the DCGAN paper, both are Adam optimizers with learning rate 0.0002 and Beta1 = 0.5. 
 
