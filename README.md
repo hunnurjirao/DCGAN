@@ -7,9 +7,9 @@ Generative Adversarial Networks (GANs) are one of the most interesting ideas in 
 ![](https://miro.medium.com/max/2850/1*Mw2c3eY5khtXafe5W-Ms_w.jpeg)
 
 
-## Generator
-
 ![](https://gluon.mxnet.io/_images/dcgan.png)
+
+## Generator
 
 1. First we have to provide a random noise to the generator as a input.
 2. Make sure that the Generator never ever sees the real images.
@@ -38,12 +38,14 @@ Here,
 If you have idea about cost function, it is similar to it. Here we use Binary Cross Entropy as a loss function. Our aim is to make this loss function zero. To do that we want to make two terms zero(1st term = log(D(x(i))) and 2nd term is log(1 - D(G(z(i)))) )
 
 Now let us consider 1st term,
-    To make 1st term zero we want to make D(x(i)) = 1. This means that the discriminator want to detect the training examples as real images. Most probably it is equal to 1. there is no problem with the 1st term.
+
+   To make 1st term zero we want to make D(x(i)) = 1. This means that the discriminator want to detect the training examples as real images. Most probably it is equal to 1. there is no problem with the 1st term.
 
 Now let us consider 2nd term,
-    To make 2nd term zero we want to make  D(G(z(i))) = 1. This means that when we pass the fake images generated from the Generator as input to the Discriminator, then Discriminator has to detect that fake images as real images. But how is it possible??
 
-Before knowing the answer, we want to conclude that our loss value is the sum of loss values of two terms i.e., ''how bad the discriminator classifies the real images as real(1st term) and how bad the discriminator classifiers the fake images as real(2nd term).''
+   To make 2nd term zero we want to make  D(G(z(i))) = 1. This means that when we pass the fake images generated from the Generator as input to the Discriminator, then Discriminator has to detect that fake images as real images. But how is it possible??
+
+Before knowing the answer, we want to conclude that our loss value is the sum of loss values of two terms i.e., ''how bad the discriminator classifies the real images as real(1st term) and how bad the discriminator classifiers the fake images as real(2nd term).
 
 Ok, now let's come back to our question, How is it possible to make our 2nd term zero? Here comes the optimizers into the picture. Here we use Adam optimizer to reduce the loss function through back propagation.  Finally, we set up two separate optimizers, one for Generator and one for Discriminator. As specified in the DCGAN paper, both are Adam optimizers with learning rate 0.0002 and Beta1 = 0.5. 
 
